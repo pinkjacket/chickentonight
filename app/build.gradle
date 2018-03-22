@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each{
+        it.buildConfigField "String", "YUMMLY_TOKEN", YummlyToken
+        it.buildConfigField "String", "YUMMLY_ID", YummlyId
+    }
 }
 
 dependencies {
