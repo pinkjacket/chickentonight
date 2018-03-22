@@ -7,10 +7,10 @@
     android:background="#000000">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/landingImageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/findRestaurantsButton"
+        android:layout_alignBottom="@+id/findRecipesButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Chicken Tonight"
         android:layout_marginTop="35dp"
-        android:id="@+id/textView"
+        android:id="@+id/titleTextView"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp"
         android:layout_alignParentTop="true"
@@ -34,10 +34,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search recipes"
-        android:id="@+id/findRestaurantsButton"
+        android:id="@+id/findRecipesButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorPrimaryDark" />
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/findRecipesButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
 </RelativeLayout>
