@@ -37,14 +37,11 @@ public class RecipeListActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException{
-                try{
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
+//                    String jsonData = response.body().string();
+//                    Log.v(TAG, jsonData);
                     recipes = yumService.processResults(response);
-                } catch (IOException e){
-                    e.printStackTrace();
+                    Log.v("RESPONSE",  recipes.get(0).getName());
                 }
-            }
         });
     }
 }

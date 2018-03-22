@@ -1,5 +1,7 @@
 package pinkjacket.chickentonight;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +24,7 @@ public class YumService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.YUMMLY_BASE_SEARCH_TERM, search);
         String url = urlBuilder.build().toString();
-
+        Log.d("url", url);
         Request request = new Request.Builder()
                 .url(url)
                 .header("X-Yummly-App-ID", Constants.YUMMLY_ID)
