@@ -3,6 +3,8 @@ package pinkjacket.chickentonight;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -20,7 +22,8 @@ public class RecipeListActivity extends AppCompatActivity {
     public static final String TAG = RecipeListActivity.class.getSimpleName();
 
     public ArrayList<Recipe> recipes = new ArrayList<>();
-    @BindView(R.id.recipeListView) ListView mListView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    private RecipeListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +46,18 @@ public class RecipeListActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException{
-//                    String jsonData = response.body().string();
-//                    Log.v(TAG, jsonData);
                     recipes = yumService.processResults(response);
                     Log.v("RESPONSE",  recipes.get(0).getName());
 
                     RecipeListActivity.this.runOnUiThread(new Runnable(){
                         @Override
                         public void run(){
-                            String[] recipeNames = new String[recipes.size()];
-                            for(int i = 0; i<recipeNames.length; i++){
-                                recipeNames[i] = recipes.get(i).getName();
-                            }
-
-                            ArrayAdapter adapter = new ArrayAdapter(RecipeListActivity.this,
-                                    android.R.layout.simple_list_item_1, recipeNames);
-                            mListView.setAdapter(adapter);
+                           mAdapter = new RecipeListAdapter(getApplicationContext(), recipes);
+                           mRecyclerView.setAdapter(mAdapter);
+                           RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(RecipeListActivity.this);
+                           mRecyclerView.setLayoutManager(layoutManager);
+                           mRecyclerView.setHasFixedSize(true);
                         }
                     });
                 }
