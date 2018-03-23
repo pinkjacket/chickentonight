@@ -24,7 +24,7 @@
         android:text="Chicken Tonight"
         android:layout_marginTop="35dp"
         android:id="@+id/titleTextView"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorTitle"
         android:textSize="40sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -38,7 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorButtonText" />
 
     <EditText
         android:id="@+id/searchEditText"
@@ -46,8 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/findRecipesButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="69dp"
         android:ems="10"
-        android:inputType="textPersonName"/>
+        android:inputType="textPersonName"
+        android:textColor="@color/colorTitle" />
 
 </RelativeLayout>
