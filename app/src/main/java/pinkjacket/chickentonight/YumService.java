@@ -54,7 +54,9 @@ public class YumService {
                     ingredients.add(ingredientsJSON.get(y).toString());
                 }
 
-                Recipe recipe = new Recipe(name, rating, source, ingredients);
+                String id = recipeJSON.getString("id");
+
+                Recipe recipe = new Recipe(name, rating, source, ingredients, id);
                 recipes.add(recipe);
             }
         }

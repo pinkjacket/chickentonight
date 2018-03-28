@@ -44,6 +44,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @BindView(R.id.sourceTextView) TextView mSourceTextView;
         @BindView(R.id.ingredientsTextView) TextView mIngredientsTextView;
         @BindView(R.id.ratingTextView) TextView mRatingTextView;
+        @BindView(R.id.idTextView) TextView mIdTextView;
 
         private Context mContext;
 
@@ -58,6 +59,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             mSourceTextView.setText(recipe.getSource());
             mIngredientsTextView.setText("Top Ingredient: " + recipe.getIngredients().get(0));
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
+            mIdTextView.setText("ID: " + recipe.getId());
         }
     }
 }
