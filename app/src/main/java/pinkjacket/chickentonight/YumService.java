@@ -21,8 +21,8 @@ public class YumService {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
-        urlBuilder.addQueryParameter(Constants.YUMMLY_BASE_SEARCH_TERM, search);
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_SEARCH_URL).newBuilder();
+        urlBuilder.addQueryParameter(Constants.YUMMLY_SEARCH_TERM, search);
         String url = urlBuilder.build().toString();
         Log.d("url", url);
         Request request = new Request.Builder()
@@ -34,6 +34,23 @@ public class YumService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
+
+    public static void findDetails(String searchId, Callback callback){
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_DETAIL_BASE + searchId).newBuilder();
+        String url = urlBuilder.build().toString();
+        Log.d("detail url", url);
+        Request request = new Request.Builder()
+                .url(url)
+                .header("X-Yummly-App-ID", Constants.YUMMLY_ID)
+                .header("X-Yummly-App-Key", Constants.YUMMLY_TOKEN)
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    };
 
     public ArrayList<Recipe> processResults(Response response){
         ArrayList<Recipe> recipes = new ArrayList<>();
