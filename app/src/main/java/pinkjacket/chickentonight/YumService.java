@@ -93,7 +93,14 @@ public class YumService {
             String jsonData = response.body().string();
             JSONObject yumJSON = new JSONObject(jsonData);
                 String name = yumJSON.getString("name");
-                RecipeDetail detail = new RecipeDetail(name);
+            ArrayList<String> ingredients = new ArrayList<>();
+            JSONArray ingredientsJSON = yumJSON.getJSONArray("ingredientLines");
+            for (int y = 0; y < ingredientsJSON.length(); y++){
+                ingredients.add(ingredientsJSON.get(y).toString());
+            }
+            String source = yumJSON.getJSONObject("source").getString("sourceRecipeUrl");
+
+                RecipeDetail detail = new RecipeDetail(name, ingredients, source);
                 details.add(detail);
         }
         catch(IOException e){

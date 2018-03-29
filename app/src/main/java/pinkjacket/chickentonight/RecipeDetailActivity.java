@@ -40,7 +40,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException{
                 details = yumService.processDetails(response);
-                Log.v("RESPONSE",  details.get(0).getName());
+                Log.v("RESPONSE",  details.get(0).getSource());
 
 //                RecipeDetailActivity.this.runOnUiThread(new Runnable(){
 //                    @Override
