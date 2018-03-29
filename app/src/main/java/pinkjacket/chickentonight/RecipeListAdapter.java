@@ -2,6 +2,7 @@ package pinkjacket.chickentonight;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         return mRecipes.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder{
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.recipeNameTextView) TextView mNameTextView;
         @BindView(R.id.sourceTextView) TextView mSourceTextView;
         @BindView(R.id.ingredientsTextView) TextView mIngredientsTextView;
@@ -52,6 +53,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindRecipe(Recipe recipe){
@@ -60,6 +62,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             mIngredientsTextView.setText("Top Ingredient: " + recipe.getIngredients().get(0));
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
             mIdTextView.setText("ID: " + recipe.getId());
+        }
+
+        @Override
+        public void onClick(View v){
+            Log.d("click listener", "works");
         }
     }
 }
