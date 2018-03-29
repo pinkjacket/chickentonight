@@ -85,4 +85,23 @@ public class YumService {
         }
         return recipes;
     }
+
+    public ArrayList<RecipeDetail> processDetails(Response response){
+        ArrayList<RecipeDetail> details = new ArrayList<>();
+
+        try{
+            String jsonData = response.body().string();
+            JSONObject yumJSON = new JSONObject(jsonData);
+                String name = yumJSON.getString("name");
+                RecipeDetail detail = new RecipeDetail(name);
+                details.add(detail);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return details;
+    }
 }

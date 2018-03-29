@@ -1,6 +1,7 @@
 package pinkjacket.chickentonight;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @BindView(R.id.ratingTextView) TextView mRatingTextView;
         @BindView(R.id.idTextView) TextView mIdTextView;
 
+        private Recipe mRecipe;
+
         private Context mContext;
 
         public RecipeViewHolder(View itemView){
@@ -62,11 +65,16 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             mIngredientsTextView.setText("Top Ingredient: " + recipe.getIngredients().get(0));
             mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
             mIdTextView.setText("ID: " + recipe.getId());
+            mRecipe = recipe;
         }
 
         @Override
         public void onClick(View v){
             Log.d("click listener", "works");
+            String searchId = mIdTextView.getText().toString();
+            Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+            intent.putExtra("searchId", mRecipe.getId());
+            mContext.startActivity(intent);
         }
     }
 }
