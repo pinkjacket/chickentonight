@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "504832880002",
+    "firebase_url": "https://chicken-tonight-8e724.firebaseio.com",
+    "project_id": "chicken-tonight-8e724",
+    "storage_bucket": "chicken-tonight-8e724.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504832880002:android:410bcb4ac50c303c",
+        "android_client_info": {
+          "package_name": "pinkjacket.chickentonight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504832880002-abasb52fh91e5pfrd8mjgafcpdc0a240.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pinkjacket.chickentonight",
+            "certificate_hash": "9b84cdd8bf4768bb356ab79abbb5634d2e35d9a9"
+          }
+        },
+        {
+          "client_id": "504832880002-h6i2hsa7kbmn10hdplrt9tl2tng9r20n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXGfqclfHPK33cYOwlO2auarPAbbwJ4Bk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504832880002-h6i2hsa7kbmn10hdplrt9tl2tng9r20n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
