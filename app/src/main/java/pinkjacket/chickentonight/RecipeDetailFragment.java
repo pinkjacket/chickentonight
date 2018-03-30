@@ -74,7 +74,6 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
             String pushId = pushRef.getKey();
             mRecipe.setPushId(pushId);
             pushRef.setValue(mRecipe);
-//            recipeRef.push().setValue(mRecipe);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }

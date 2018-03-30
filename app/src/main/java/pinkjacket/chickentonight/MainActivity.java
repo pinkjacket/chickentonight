@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference mSearchedTermReference;
     private ValueEventListener mSearchedTermReferenceListener;
 
-//    private SharedPreferences mSharedPreferences;
-//    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        mEditor = mSharedPreferences.edit();
         mFindRecipesButton.setOnClickListener(this);
         mGitButton.setOnClickListener(this);
         mListButton.setOnClickListener(this);
@@ -76,9 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mFindRecipesButton){
             String search = mSearchEditText.getText().toString();
             saveSearchToFirebase(search);
-//            if(!(search).equals("")){
-//                addToSharedPreferences(search);
-//            }
             Intent intent = new Intent(MainActivity.this, RecipeListActivity.class);
             intent.putExtra("search", search);
             startActivity(intent);
@@ -129,7 +122,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finish();
     }
 
-//    private void addToSharedPreferences(String search){
-//        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, search).apply();
-//    }
 }
