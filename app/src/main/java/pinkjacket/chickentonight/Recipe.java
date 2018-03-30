@@ -1,13 +1,18 @@
 package pinkjacket.chickentonight;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
+@Parcel
 public class Recipe {
     private String name;
     private double rating;
     private String source;
     private ArrayList<String> ingredients = new ArrayList<>();
     private String id;
+
+    public Recipe() {}
 
     public Recipe(String name, double rating, String source, ArrayList<String> ingredients, String id){
         this.name = name;
