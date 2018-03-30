@@ -12,6 +12,7 @@ public class Recipe {
     private String source;
     private List<String> ingredients = new ArrayList<>();
     private String id;
+    private String pushId;
 
     public Recipe() {}
 
@@ -41,5 +42,13 @@ public class Recipe {
 
     public String getId() {
         return id;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

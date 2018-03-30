@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/recipeDNameTextView"
             android:text="Ingredients list"
+            android:background="@android:color/background_light"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="15sp" />
 
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Source url"
             android:layout_alignTop="@+id/ingredientsLTextView"
+            android:background="@android:color/background_light"
             android:id="@+id/sourceUTextView"/>
 
         <Button

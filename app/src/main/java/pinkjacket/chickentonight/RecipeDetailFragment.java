@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -61,10 +63,18 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v){
         if(v == mSaveRecipeButton){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference recipeRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_RECIPES);
-            recipeRef.push().setValue(mRecipe);
+                    .getReference(Constants.FIREBASE_CHILD_RECIPES)
+                    .child(uid);
+
+            DatabaseReference pushRef = recipeRef.push();
+            String pushId = pushRef.getKey();
+            mRecipe.setPushId(pushId);
+            pushRef.setValue(mRecipe);
+//            recipeRef.push().setValue(mRecipe);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
