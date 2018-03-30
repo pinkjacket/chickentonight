@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -19,18 +22,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchEditText) EditText mSearchEditText;
     @BindView(R.id.titleTextView) TextView mTitleTextView;
     @BindView(R.id.gitButton) Button mGitButton;
+    private DatabaseReference mSearchedTermReference;
 
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mSearchedTermReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_TERM);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
         mFindRecipesButton.setOnClickListener(this);
         mGitButton.setOnClickListener(this);
     }
@@ -39,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         if (v == mFindRecipesButton){
             String search = mSearchEditText.getText().toString();
-            if(!(search).equals("")){
-                addToSharedPreferences(search);
-            }
+            saveSearchToFirebase(search);
+//            if(!(search).equals("")){
+//                addToSharedPreferences(search);
+//            }
             Intent intent = new Intent(MainActivity.this, RecipeListActivity.class);
-//            intent.putExtra("search", search);
+            intent.putExtra("search", search);
             startActivity(intent);
         }
         if (v == mGitButton){
@@ -53,7 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void addToSharedPreferences(String search){
-        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, search).apply();
+    public void saveSearchToFirebase(String search){
+        mSearchedTermReference.push().setValue(search);
     }
+
+//    private void addToSharedPreferences(String search){
+//        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, search).apply();
+//    }
 }

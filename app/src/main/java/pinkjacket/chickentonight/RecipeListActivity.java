@@ -21,8 +21,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RecipeListActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private String mRecentSearch;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentSearch;
     public static final String TAG = RecipeListActivity.class.getSimpleName();
 
     public ArrayList<Recipe> recipes = new ArrayList<>();
@@ -38,11 +38,11 @@ public class RecipeListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String search = intent.getStringExtra("search");
         getRecipes(search);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
-        if (mRecentSearch != null){
-            getRecipes(mRecentSearch);
-        }
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
+//        if (mRecentSearch != null){
+//            getRecipes(mRecentSearch);
+//        }
     }
 
     private void getRecipes(String search){
