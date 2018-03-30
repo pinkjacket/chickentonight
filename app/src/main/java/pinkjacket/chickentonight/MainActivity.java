@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchEditText) EditText mSearchEditText;
     @BindView(R.id.titleTextView) TextView mTitleTextView;
     @BindView(R.id.gitButton) Button mGitButton;
+    @BindView(R.id.listButton) Button mListButton;
     private DatabaseReference mSearchedTermReference;
     private ValueEventListener mSearchedTermReferenceListener;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        mEditor = mSharedPreferences.edit();
         mFindRecipesButton.setOnClickListener(this);
         mGitButton.setOnClickListener(this);
+        mListButton.setOnClickListener(this);
     }
 
     @Override
@@ -81,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://github.com/pinkjacket"));
             startActivity(webIntent);
+        }
+        if(v == mListButton){
+            Intent intent = new Intent(MainActivity.this, SavedRecipeListActivity.class);
+            startActivity(intent);
         }
     }
 
