@@ -3,13 +3,14 @@ package pinkjacket.chickentonight;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Parcel
 public class Recipe {
     private String name;
     private double rating;
     private String source;
-    private ArrayList<String> ingredients = new ArrayList<>();
+    private List<String> ingredients = new ArrayList<>();
     private String id;
 
     public Recipe() {}
@@ -34,7 +35,7 @@ public class Recipe {
         return source;
     }
 
-    public ArrayList<String> getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 

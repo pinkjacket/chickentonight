@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
@@ -56,7 +60,13 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v){
-
+        if(v == mSaveRecipeButton){
+            DatabaseReference recipeRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RECIPES);
+            recipeRef.push().setValue(mRecipe);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
