@@ -1,7 +1,9 @@
 package pinkjacket.chickentonight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +20,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.titleTextView) TextView mTitleTextView;
     @BindView(R.id.gitButton) Button mGitButton;
 
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
         mFindRecipesButton.setOnClickListener(this);
         mGitButton.setOnClickListener(this);
     }
@@ -32,8 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         if (v == mFindRecipesButton){
             String search = mSearchEditText.getText().toString();
+            if(!(search).equals("")){
+                addToSharedPreferences(search);
+            }
             Intent intent = new Intent(MainActivity.this, RecipeListActivity.class);
-            intent.putExtra("search", search);
+//            intent.putExtra("search", search);
             startActivity(intent);
         }
         if (v == mGitButton){
@@ -41,5 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Uri.parse("https://github.com/pinkjacket"));
             startActivity(webIntent);
         }
+    }
+
+    private void addToSharedPreferences(String search){
+        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, search).apply();
     }
 }

@@ -1,6 +1,8 @@
 package pinkjacket.chickentonight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RecipeListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentSearch;
     public static final String TAG = RecipeListActivity.class.getSimpleName();
 
     public ArrayList<Recipe> recipes = new ArrayList<>();
@@ -34,7 +38,13 @@ public class RecipeListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String search = intent.getStringExtra("search");
         getRecipes(search);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
+        if (mRecentSearch != null){
+            getRecipes(mRecentSearch);
+        }
     }
+
     private void getRecipes(String search){
         final YumService yumService = new YumService();
         yumService.findRecipes(search, new Callback(){
