@@ -59,14 +59,6 @@
                 android:text="Ingredients list"
                 android:id="@+id/ingredientsTextView"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="id here"
-                android:layout_below="@+id/ingredientsTextView"
-                android:id="@+id/idTextView"/>
-
-
 
             <TextView
                 android:layout_width="wrap_content"

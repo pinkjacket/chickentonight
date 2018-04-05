@@ -1,5 +1,7 @@
 package pinkjacket.chickentonight.adapters;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -22,8 +24,9 @@ import pinkjacket.chickentonight.Constants;
 import pinkjacket.chickentonight.R;
 import pinkjacket.chickentonight.models.Recipe;
 import pinkjacket.chickentonight.ui.RecipeDetailActivity;
+import pinkjacket.chickentonight.util.ItemTouchHelperViewHolder;
 
-public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder{
+public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder{
 
     View mView;
     Context mContext;
@@ -46,6 +49,21 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder{
         ingredientsTextView.setText(TextUtils.join(",", recipe.getIngredients()));
         sourceTextView.setText(recipe.getSource());
         ratingTextView.setText("Rating: " + recipe.getRating() + "/5");
+    }
+
+    @Override
+    public void onItemSelected(){
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext, R.animator.drag_scale_on);
+        set.setTarget(itemView);
+        set.start();
+    }
+
+    @Override
+    public void onItemClear(){
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_off);
+        set.setTarget(itemView);
+        set.start();
     }
 
 }
