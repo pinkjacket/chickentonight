@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.services;
 
 import android.util.Log;
 
@@ -15,6 +15,8 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.models.Recipe;
 
 public class YumService {
     public static void findRecipes(String search, Callback callback){

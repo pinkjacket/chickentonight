@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.registerButton) Button mRegisterTextButton;

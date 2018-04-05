@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.adapters.FirebaseRecipeViewHolder;
+import pinkjacket.chickentonight.R;
+import pinkjacket.chickentonight.models.Recipe;
 
 public class SavedRecipeListActivity extends AppCompatActivity {
     private DatabaseReference mRecipeReference;
@@ -35,7 +39,7 @@ public class SavedRecipeListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter(){
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Recipe, FirebaseRecipeViewHolder>
-                (Recipe.class, R.layout.recipe_list_item, FirebaseRecipeViewHolder.class, mRecipeReference) {
+                (Recipe.class, R.layout.recipe_list_item_drag, FirebaseRecipeViewHolder.class, mRecipeReference) {
 
             @Override
             protected void populateViewHolder(FirebaseRecipeViewHolder viewHolder, Recipe model, int position){

@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.models;
 
 import org.parceler.Parcel;
 

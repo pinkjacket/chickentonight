@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
         </activity>
-        <activity android:name=".RecipeListActivity" />
-        <activity android:name=".RecipeDetailActivity" />
-        <activity android:name=".SavedRecipeListActivity" />
-        <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ui.RecipeListActivity" />
+        <activity android:name=".ui.RecipeDetailActivity" />
+        <activity android:name=".ui.SavedRecipeListActivity" />
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

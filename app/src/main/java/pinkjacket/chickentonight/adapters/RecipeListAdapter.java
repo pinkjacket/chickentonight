@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,12 @@ import android.widget.TextView;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.R;
+import pinkjacket.chickentonight.models.Recipe;
+import pinkjacket.chickentonight.ui.RecipeDetailActivity;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder>{
     private ArrayList<Recipe> mRecipes = new ArrayList<>();

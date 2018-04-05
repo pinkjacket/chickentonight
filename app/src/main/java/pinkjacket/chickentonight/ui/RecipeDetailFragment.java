@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.ui;
 
 
 import android.os.Bundle;
@@ -20,6 +20,9 @@ import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.R;
+import pinkjacket.chickentonight.models.Recipe;
 
 public class RecipeDetailFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.recipeDNameTextView) TextView mRecipeDNameTextView;

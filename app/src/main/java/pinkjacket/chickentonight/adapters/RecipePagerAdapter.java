@@ -1,10 +1,13 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
+
+import pinkjacket.chickentonight.models.Recipe;
+import pinkjacket.chickentonight.ui.RecipeDetailFragment;
 
 public class RecipePagerAdapter extends FragmentPagerAdapter{
     private ArrayList<Recipe> mRecipes;

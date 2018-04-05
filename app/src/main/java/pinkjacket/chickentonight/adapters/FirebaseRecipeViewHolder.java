@@ -1,4 +1,4 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,11 @@ import com.google.firebase.database.ValueEventListener;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.R;
+import pinkjacket.chickentonight.models.Recipe;
+import pinkjacket.chickentonight.ui.RecipeDetailActivity;
 
 public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

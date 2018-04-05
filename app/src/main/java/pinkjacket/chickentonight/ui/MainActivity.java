@@ -1,9 +1,7 @@
-package pinkjacket.chickentonight;
+package pinkjacket.chickentonight.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.findRecipesButton) Button mFindRecipesButton;
