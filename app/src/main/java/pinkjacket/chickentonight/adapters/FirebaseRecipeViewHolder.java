@@ -23,7 +23,7 @@ import pinkjacket.chickentonight.R;
 import pinkjacket.chickentonight.models.Recipe;
 import pinkjacket.chickentonight.ui.RecipeDetailActivity;
 
-public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder{
 
     View mView;
     Context mContext;
@@ -33,7 +33,6 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindRecipe(Recipe recipe){
@@ -49,29 +48,4 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
         ratingTextView.setText("Rating: " + recipe.getRating() + "/5");
     }
 
-    @Override
-    public void onClick(View view){
-        final ArrayList<Recipe> recipes = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPES);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    recipes.add(snapshot.getValue(Recipe.class));
-                }
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("recipes", Parcels.wrap(recipes));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 }

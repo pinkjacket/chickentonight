@@ -13,6 +13,7 @@ public class Recipe {
     private List<String> ingredients = new ArrayList<>();
     private String id;
     private String pushId;
+    String index;
 
     public Recipe() {}
 
@@ -22,6 +23,7 @@ public class Recipe {
         this.source = source;
         this.ingredients = ingredients;
         this.id = id;
+        this.index = "not_specified";
     }
 
     public String getName() {
@@ -50,5 +52,13 @@ public class Recipe {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
