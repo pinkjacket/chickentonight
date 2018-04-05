@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
 
     View mView;
     Context mContext;
+    public ImageView mDragIcon;
 
     public FirebaseRecipeViewHolder(View itemView){
         super(itemView);
@@ -35,6 +37,7 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
     }
 
     public void bindRecipe(Recipe recipe){
+        mDragIcon = (ImageView) mView.findViewById(R.id.dragIcon);
         TextView nameTextView = (TextView) mView.findViewById(R.id.recipeNameTextView);
         TextView ingredientsTextView = (TextView) mView.findViewById(R.id.ingredientsTextView);
         TextView sourceTextView = (TextView) mView.findViewById(R.id.sourceTextView);
