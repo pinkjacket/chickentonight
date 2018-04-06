@@ -1,7 +1,11 @@
 package pinkjacket.chickentonight.adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,8 +22,11 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import pinkjacket.chickentonight.Constants;
+import pinkjacket.chickentonight.R;
 import pinkjacket.chickentonight.models.Recipe;
 import pinkjacket.chickentonight.ui.RecipeDetailActivity;
+import pinkjacket.chickentonight.ui.RecipeDetailFragment;
 import pinkjacket.chickentonight.util.ItemTouchHelperAdapter;
 import pinkjacket.chickentonight.util.OnStartDragListener;
 
@@ -29,6 +36,7 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
     private Context mContext;
     private ChildEventListener mChildEventListener;
     private ArrayList<Recipe> mRecipes = new ArrayList<>();
+    private int mOrientation;
 
     public FirebaseRecipeListAdapter(Class<Recipe> modelClass, int modelLayout,
                                      Class<FirebaseRecipeViewHolder> viewHolderClass,
@@ -69,6 +77,11 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
     @Override
     protected void populateViewHolder(final FirebaseRecipeViewHolder viewHolder, Recipe model, int position){
         viewHolder.bindRecipe(model);
+
+        mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
+            createDetailFragment(0);
+        }
         viewHolder.mDragIcon.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -82,12 +95,24 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-                intent.putExtra("position", viewHolder.getAdapterPosition());
-                intent.putExtra("recipes", Parcels.wrap(mRecipes));
-                mContext.startActivity(intent);
+                int itemPosition = viewHolder.getAdapterPosition();
+                if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    createDetailFragment(itemPosition);
+                } else {
+                    Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
+                    mContext.startActivity(intent);
+                }
             }
         });
+    }
+
+    private void createDetailFragment(int position){
+        RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position);
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.recipeDetailContainer, detailFragment);
+        ft.commit();
     }
 
     private void setIndexInFirebase(){

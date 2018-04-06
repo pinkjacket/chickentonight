@@ -1,7 +1,11 @@
 package pinkjacket.chickentonight.adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +18,11 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pinkjacket.chickentonight.Constants;
 import pinkjacket.chickentonight.R;
 import pinkjacket.chickentonight.models.Recipe;
 import pinkjacket.chickentonight.ui.RecipeDetailActivity;
+import pinkjacket.chickentonight.ui.RecipeDetailFragment;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder>{
     private ArrayList<Recipe> mRecipes = new ArrayList<>();
@@ -51,22 +57,41 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @BindView(R.id.ratingTextView) TextView mRatingTextView;
 
         private Context mContext;
+        private int mOrientation;
 
         public RecipeViewHolder(View itemView){
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+                createDetailFragment(0);
+            }
             itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v){
-            int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("recipes", Parcels.wrap(mRecipes));
-            mContext.startActivity(intent);
+        private void createDetailFragment(int position){
+            RecipeDetailFragment detailFragment = RecipeDetailFragment.newInstance(mRecipes, position);
+            FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.recipeDetailContainer, detailFragment);
+            ft.commit();
         }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+            } else {
+
+                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                intent.putExtra(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(mRecipes));
+                mContext.startActivity(intent);
+            }
+        }
+
 
         public void bindRecipe(Recipe recipe){
             mNameTextView.setText(recipe.getName());

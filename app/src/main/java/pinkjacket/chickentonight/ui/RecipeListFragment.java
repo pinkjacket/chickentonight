@@ -34,6 +34,7 @@ public class RecipeListFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentSearch;
+    public static final String TAG = RecipeListActivity.class.getSimpleName();
 
 
     public RecipeListFragment() {
@@ -63,6 +64,7 @@ public class RecipeListFragment extends Fragment {
                                 new LinearLayoutManager(getActivity());
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
+
                     }
                 });
             }
